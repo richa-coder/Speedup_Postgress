@@ -1,0 +1,12 @@
+SELECT c.key, // Query optimizer fooled(Using array for values)
+       c.x_key,
+       c.tags,
+       x.name
+ FROM context c
+ JOIN x
+   ON c.x_key = x.key
+WHERE c.key = ANY (VALUES (16968196), -- Thousand other keys --)
+  AND c.x_key = 1
+AND c.tags @> ARRAY[E'hey'];
+
+
