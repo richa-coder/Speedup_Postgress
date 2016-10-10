@@ -9,5 +9,5 @@ Buffers: shared hit=83494
 
 Postgress uses Bitmap Heap Scan.In our case it has a large number of keys to check so it uses the more approximative way to retrieve the candidate rows and checks each row individually for a match on x_key and tags. All this “loading in memory” and “checking individual row” takes time.
  
- Solution:The query optimizer is fooled by the use of ARRAY[...] to list all the primary keys to look up. VALUES (...), (...) lets the optimizer make full use of the primary key index instead.
+ And the Solution to this problem:The query optimizer is fooled by the use of ARRAY[...] to list all the primary keys to look up. VALUES (...), (...) lets the optimizer make full use of the primary key index instead.
  Ref:Lane
